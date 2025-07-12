@@ -9,7 +9,7 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: #f9fafb;
       color: #1f2937;
-      max-width: 700px;
+      max-width: 750px;
       margin: 60px auto;
       padding: 30px;
       line-height: 1.7;
@@ -34,6 +34,7 @@
       border-radius: 5px;
       overflow-x: auto;
       font-family: Consolas, monospace;
+      font-size: 0.9em;
     }
 
     p {
@@ -51,21 +52,69 @@
   <h1>Hi [Recruiter's Name],</h1>
 
   <p>
-    Thank you for the interview opportunity. I’ve been reflecting on the conversation and realized I didn’t present my best work under pressure.
+    Thank you again for the interview opportunity. I’ve been reflecting on the conversation and realized I didn’t present my best work under pressure.
   </p>
 
   <p>
-    I wanted to share a revised solution to one of the technical questions, as I believe it better represents my actual capabilities.
+    I finished the approach I was aiming for during the interview, and I believe it better reflects how I think and build solutions. I've also added a couple of utility methods that I think would be helpful in a real-world setting.
   </p>
 
-  <h2>Improved Solution</h2>
-  <pre><code># Python – Check if string is a palindrome
-def is_palindrome(s):
-    return s == s[::-1]
+  <h2>RateLimiter – Final Solution</h2>
+  <pre><code>import time
+from collections import deque, defaultdict
+
+class RateLimiter:
+    def __init__(self):
+        self.logs = {}
+        self.logsLimit = {
+            'login': 10,
+            'logout': 10,
+            'purchase': 5,
+            'delete': 2,
+            'update': 3,
+        }
+
+    # finished the solution i was going for in the interview
+    def is_accepted(self, command: str) -> bool:
+        now = time.time()
+
+        # If command is seen for the first time
+        if command not in self.logs:
+            self.logs[command] = deque()
+        
+        timestampsQueue = self.logs[command]
+        limit = self.logsLimit[command]
+        
+        # Remove timestamps older than 1 second
+        while timestampsQueue and now - timestampsQueue[0] > 1:
+            timestampsQueue.popleft()
+
+        if len(timestampsQueue) < limit:
+            timestampsQueue.append(now)
+            return True
+        else:
+            return False
+
+
+    # These aren’t required for correctness, 
+    # but I added them because I think they’d be helpful in a real-world scenario where you want visibility and control over rate limits.  
+    def get_remaining_quota(self, command: str) -> int:
+        currentTime = time.time()
+        timestampsQueue = self.logs[command]
+        limit = self.logsLimit.get(command, 0)
+
+        while timestampsQueue and currentTime - timestampsQueue[0] > 1:
+            timestampsQueue.popleft()
+
+        return max(0, limit - len(timestampsQueue))
+
+
+    def update_limit(self, command: str, new_limit: int):
+        self.logsLimit[command] = new_limit
   </code></pre>
 
   <p>
-    I appreciate your time and hope this gives a better sense of how I approach problems when I'm thinking clearly.
+    I appreciate your time and hope this gives a better sense of how I think when I’m clear-headed.
   </p>
 
   <footer>
