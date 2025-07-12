@@ -73,7 +73,7 @@
 </head>
 <body>
   <header>
-    <h1>Salesforce Interview Follow-Up</h1>
+    <h1>Salesforce Interview Follow-Up - Itay Aharoni</h1>
   </header>
 
   <div class="container">
@@ -108,7 +108,7 @@ class RateLimiter:
     def is_accepted(self, command: str) -> bool:
         now = time.time()
 
-        # If command is seen for the first time
+        # If command is seen for the first time - add to dict
         if command not in self.logs:
             self.logs[command] = deque()
         
@@ -126,7 +126,8 @@ class RateLimiter:
             return False
 
     # These aren’t required for correctness, 
-    # but I added them because I think they’d be helpful in a real-world scenario where you want visibility and control over rate limits.  
+    # but I added them because I think they’d be helpful in a real-world scenario - 
+    # where you want visibility and control over rate limits.  
     def get_remaining_quota(self, command: str) -> int:
         currentTime = time.time()
         timestampsQueue = self.logs[command]
