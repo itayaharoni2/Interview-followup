@@ -3,38 +3,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Interview Follow-Up</title>
+  <title>Salesforce Interview Follow-Up</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f9fafb;
-      color: #1f2937;
-      max-width: 750px;
-      margin: 60px auto;
-      padding: 30px;
-      line-height: 1.7;
-      border: 1px solid #e5e7eb;
-      border-radius: 10px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.05);
+    * {
+      box-sizing: border-box;
     }
 
-    h1 {
-      font-size: 2em;
-      color: #111827;
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f9;
+      color: #1f2937;
+      animation: fadeIn 0.8s ease;
+    }
+
+    header {
+      background: linear-gradient(90deg, #0176d3, #19a9e7);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 4px solid #0c5ea3;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2em;
+    }
+
+    .container {
+      background-color: white;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      line-height: 1.7;
     }
 
     h2 {
-      margin-top: 30px;
-      color: #1d4ed8;
+      color: #0176d3;
+      margin-top: 40px;
     }
 
     pre {
       background-color: #f3f4f6;
-      padding: 15px;
-      border-radius: 5px;
+      padding: 18px;
+      border-radius: 6px;
       overflow-x: auto;
       font-family: Consolas, monospace;
       font-size: 0.9em;
+      border: 1px solid #e2e8f0;
     }
 
     p {
@@ -42,30 +60,37 @@
     }
 
     footer {
-      margin-top: 40px;
-      font-size: 0.9em;
-      color: #6b7280;
+      margin-top: 50px;
+      font-size: 0.95em;
+      color: #4b5563;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <h1>Salesforce Interview Follow-Up</h1>
+  <header>
+    <h1>Salesforce Interview Follow-Up</h1>
+  </header>
 
-<p>
-  Thank you again for the interview opportunity. It was my first technical interview, and unfortunately I wasn’t able to fully express myself or demonstrate my true skills and personality.
-</p>
+  <div class="container">
+    <p>
+      Thank you again for the interview opportunity. It was my first technical interview, and unfortunately I wasn’t able to fully express myself or demonstrate my true skills and personality.
+    </p>
 
-<p>
-  I didn’t want to leave the wrong impression, and I don't like doing things halfway — so I took some time to complete the code I was working on during the interview. I hope this helps show what I was aiming for.
-</p>
+    <p>
+      I didn’t want to leave the wrong impression, and I don't like doing things halfway — so I took some time to complete the code I was working on during the interview. I hope this helps show what I was aiming for.
+    </p>
 
-<p>
-  I’ve also added a couple of utility methods that I think would be useful in a real-world setting.
-</p>
+    <p>
+      I’ve also added a couple of utility methods that I think would be useful in a real-world setting.
+    </p>
 
-
-  <h2>Final Solution</h2>
-  <pre><code>import time
+    <h2>Final Solution</h2>
+    <pre><code>import time
 from collections import deque, defaultdict
 
 class RateLimiter:
@@ -100,7 +125,6 @@ class RateLimiter:
         else:
             return False
 
-
     # These aren’t required for correctness, 
     # but I added them because I think they’d be helpful in a real-world scenario where you want visibility and control over rate limits.  
     def get_remaining_quota(self, command: str) -> int:
@@ -113,15 +137,14 @@ class RateLimiter:
 
         return max(0, limit - len(timestampsQueue))
 
-
     def update_limit(self, command: str, new_limit: int):
         self.logsLimit[command] = new_limit
-  </code></pre>
+    </code></pre>
 
-
-  <footer>
-    Appreciate your time again,<br>
-    Itay Aharoni
-  </footer>
+    <footer>
+      Appreciate your time again,<br>
+      Itay Aharoni
+    </footer>
+  </div>
 </body>
 </html>
